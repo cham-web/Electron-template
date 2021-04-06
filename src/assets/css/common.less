@@ -1,0 +1,45 @@
+@font-face {font-family: "pingfang";
+  src: url('~@/assets/fonts/PingFang SC Regular.eot'); /* IE9*/
+  src: url('~@/assets/fonts/PingFang SC Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('~@/assets/fonts/PingFang SC Regular.woff') format('woff'), /* chrome, firefox */
+  url('~@/assets/fonts/PingFang SC Regular.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('~@/assets/fonts/PingFang SC Regular.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend{margin:0;padding:0;}
+html,body{width:100%;}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+    width: 16px;    
+    background-color: #F6F6F6;  
+}  
+
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    background-color: #F6F6F6;  
+}  
+
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+  background: linear-gradient(to right, #1fa569, #46d193, #22a86b);
+
+}  
+/*定义最上方和最下方的按钮*/
+::-webkit-scrollbar-button{
+  display: none;
+}
+li{
+  list-style: none;
+}
+img{
+  display: block;
+}
+
+.flex-mixins(@direction: row) {
+  display: flex;
+  align-items: center;
+  flex-direction: @direction;
+}
