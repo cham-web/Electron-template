@@ -16,7 +16,6 @@
           </span>
           <el-input type="password" placeholder="请输入密码" v-model="dataForm.password"></el-input>
         </el-form-item>
-
       </el-form>
       <el-button class="btn" @click="login('dataForm')">立即登录</el-button>
     </div>

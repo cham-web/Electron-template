@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <el-input v-model="value" placeholder="请输入"></el-input>
     <el-table
       :data="tableData"
       style="width: 100%">
@@ -33,6 +34,7 @@ export default {
   },
   data () {
     return {
+      value: null,
       tableData: [
         {
           imeiNo: 'imeiNo1',
