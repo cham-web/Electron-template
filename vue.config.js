@@ -10,7 +10,7 @@ module.exports = {
     electronBuilder: {
       externals: ['serialport'],
       builderOptions: {
-        npmRebuild: false, // 在打包之前不再进行创建node_modules
+        npmRebuild: true, // 在打包之前不再进行创建node_modules
         buildDependenciesFromSource: true, // 使用当前开发环境的node_modules
         appId: `com.${process.env.VUE_APP_APPID}.app`,
         productName: process.env.VUE_APP_APPID, // 项目名，也是生成的安装文件名

@@ -22,8 +22,8 @@
   </div>
 </template>
 <script>
-import md5 from 'md5'
-import { login } from '@/api/base'
+// import md5 from 'md5'
+// import { login } from '@/api/base'
 export default {
   // 组件名称
   name: 'Login',
@@ -78,18 +78,19 @@ export default {
       this.$refs[formName].resetFields()
     },
     login (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          login({ ...this.dataForm, password: md5(this.dataForm.password) }).then(res => {
-            this.$store.dispatch('setUserInfo', res)
-            this.$store.dispatch('setToken', res.ticket)
-            this.$router.push(this.$store.getters.permission_routes[0].path)
-          })
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
+      this.$router.push(this.$store.getters.permission_routes[0].path)
+      // this.$refs[formName].validate((valid) => {
+      //   if (valid) {
+      //     login({ ...this.dataForm, password: md5(this.dataForm.password) }).then(res => {
+      //       this.$store.dispatch('setUserInfo', res)
+      //       this.$store.dispatch('setToken', res.ticket)
+      //       this.$router.push(this.$store.getters.permission_routes[0].path)
+      //     })
+      //   } else {
+      //     console.log('error submit!!')
+      //     return false
+      //   }
+      // })
     }
   }
 }

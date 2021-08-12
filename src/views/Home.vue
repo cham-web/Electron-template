@@ -1,7 +1,11 @@
 <template>
   <div class="home">
     <el-input v-model="value" placeholder="请输入"></el-input>
-    <el-table
+    <p>设置快捷键1</p>
+    <button @click="setHotKey(1)">设置ctrl+1</button>
+    <button @click="setHotKey(2)">设置ctrl+2</button>
+    <el-input v-model="name" @keydown.native.prevent="getCode"></el-input>
+    <!-- <el-table
       :data="tableData"
       style="width: 100%">
       <el-table-column label="编号" align="center">
@@ -19,7 +23,7 @@
           <span>{{scope.row.name}}</span>
         </template>
       </el-table-column>
-    </el-table>
+    </el-table> -->
     <el-button @click="send">点击</el-button>
   </div>
 </template>
@@ -28,6 +32,11 @@
 // @ is an alias to /src
 // import { qryImei } from '@/api/device'
 const { ipcRenderer } = window.require('electron')
+const keyObj = {
+  ctrlKey: 'Ctrl',
+  altKey: 'Alt',
+  shiftKey: 'Shift'
+}
 export default {
   name: 'Home',
   components: {
@@ -35,6 +44,8 @@ export default {
   data () {
     return {
       value: null,
+      name: '',
+      controlKey: '',
       tableData: [
         {
           imeiNo: 'imeiNo1',
@@ -194,8 +205,37 @@ export default {
     //   console.log(res)
     //   this.tableData = res.lsList
     // })
+
   },
   methods: {
+    setControlKey (event) {
+      if (event.keyCode === 16 || event.keyCode === 17 || event.keyCode === 18) {
+        if (this.name) {
+          this.controlKey = event.key
+        }
+      } else {
+        this.controlKey = ''
+      }
+    },
+    getCode (event) {
+      if (event.keyCode !== 16 && event.keyCode !== 17 && event.keyCode !== 18) {
+        this.name = event.key
+        console.log(event)
+        for (const key in keyObj) {
+          if (event[key]) {
+            this.name = keyObj[key] + '+' + this.name
+          }
+        }
+        console.log(this.name)
+      }
+    },
+    keydown (event) {
+      console.log(event)
+    },
+    setHotKey (key) {
+      // hotKeyFun(`CommandOrControl+${key}`)
+      ipcRenderer.send('setHotkey', `CommandOrControl+${key}`)
+    },
     send () {
       const { port } = this.$store.getters
       port.port.write('456123123123\n')

@@ -5,6 +5,7 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const path = require('path')
 const updateHandle = require('./utils/mainProcess') // 引入更新程序
+const hotKeyFun = require('./utils/hotKey')
 const isDevelopment = process.env.NODE_ENV !== 'production'
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -49,6 +50,14 @@ async function createWindow () {
   // 触发更新
   updateHandle(win)
 
+  // 设置快捷键
+  hotKeyFun(win)
+  // ipcMain.on('setHotKey', (event, key) => {
+  //   globalShortcut.register(key, () => {
+  //     console.log(key)
+  //   })
+  // })
+
   win.setAspectRatio(1.777777777777778) // 设置窗口等比例缩放
   ipcMain.on('exit', (event, args) => {
     if (args) {
@@ -56,6 +65,7 @@ async function createWindow () {
     }
   })
   globalShortcut.register('CommandOrControl+P', () => {
+    console.log(123)
     const isDevTool = win.webContents.isDevToolsOpened()
     isDevTool ? win.webContents.closeDevTools() : win.webContents.openDevTools()
   })
