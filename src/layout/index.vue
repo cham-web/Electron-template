@@ -56,7 +56,7 @@ export default {
   // 挂载完毕
   mounted () {
     const Serial = new SerialPort({ path: 'COM6' })
-    console.log(Serial.list())
+    // console.log(Serial.list())
     // this.$store.dispatch('setPort', Serial)
     // Serial.port.write('123\n')
     console.log(Serial)

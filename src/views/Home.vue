@@ -25,10 +25,12 @@
       </el-table-column>
     </el-table> -->
     <el-button @click="send">点击</el-button>
+    <spot-car></spot-car>
   </div>
 </template>
 
 <script>
+import SpotCar from '../components/SpotCar.vue'
 // @ is an alias to /src
 // import { qryImei } from '@/api/device'
 const { ipcRenderer } = window.require('electron')
@@ -40,6 +42,7 @@ const keyObj = {
 export default {
   name: 'Home',
   components: {
+    SpotCar
   },
   data () {
     return {

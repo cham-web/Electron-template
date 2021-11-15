@@ -1,0 +1,15 @@
+2021-11-12 18:24:44.785 ERROR 错误: “Socket.Core.SocketConnectionServerDispatcher”的类型初始值设定项引发异常。
+2021-11-12 18:24:44.795 ERROR 错误:    在 Socket.Core.SocketConnectionServerDispatcher.ServerSocketListing(SocketConnectConfig sktconfig)
+   在 TestHaiKang.Form1.Form1_Load(Object sender, EventArgs e) 位置 F:\HeProject\git8\WanShiXing\FirstAidSocket\TestHaiKang\Form1.cs:行号 123
+   在 System.Windows.Forms.Form.OnLoad(EventArgs e)
+   在 System.Windows.Forms.Form.OnCreateControl()
+   在 System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   在 System.Windows.Forms.Control.CreateControl()
+   在 System.Windows.Forms.Control.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   在 System.Windows.Forms.Form.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Form.WndProc(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)

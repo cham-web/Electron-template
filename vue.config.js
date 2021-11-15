@@ -24,6 +24,16 @@ module.exports = {
             url: process.env.VUE_APP_UPLOAD_URL
           }
         ],
+        extraResources: [
+          {
+            from: './bin',
+            to: 'bin'
+          },
+          {
+            from: './ffmpeg',
+            to: 'ffmpeg'
+          }
+        ],
         win: { // win相关配置
           icon: './public/icon.ico', // 图标，当前图标在根目录下，注意这里有两个坑
           target: [

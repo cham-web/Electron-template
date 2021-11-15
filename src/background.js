@@ -1,11 +1,12 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, ipcMain, globalShortcut, Tray, Menu } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, globalShortcut, Tray, Menu, shell } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const path = require('path')
 const updateHandle = require('./utils/mainProcess') // 引入更新程序
 const hotKeyFun = require('./utils/hotKey')
+const expressWs = require('./utils/expressSocket') // 运行socket
 const isDevelopment = process.env.NODE_ENV !== 'production'
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -52,6 +53,11 @@ async function createWindow () {
 
   // 设置快捷键
   hotKeyFun(win)
+
+  // 创建socket
+  expressWs()
+  const exeLink = path.resolve(__dirname, '../bin/', 'TestHaiKang.exe')
+  shell.openExternal(exeLink) // 打开上位机
   // ipcMain.on('setHotKey', (event, key) => {
   //   globalShortcut.register(key, () => {
   //     console.log(key)
