@@ -32,7 +32,8 @@ export default {
   props: {
     arr: {
       type: Array,
-      default: () => [{ url: 'admin:H.123456@192.168.1.65', downTime: null },
+      default: () => [
+        { url: 'admin:H.123456@192.168.1.65', downTime: null },
         { url: 'admin:rsd206369@192.168.1.64', downTime: null }]
     }
   },
@@ -112,6 +113,9 @@ export default {
       } else if (de.webkitCancelFullScreen) {
         de.webkitCancelFullScreen()
       }
+    },
+    waiting (e) {
+      console.log(e, '118--------------')
     },
     loadeddata (e) {
       console.log(e)
@@ -201,6 +205,18 @@ export default {
         // errType是 MediaError时，对应errDetail是MediaMSEError   或MEDIA_SOURCE_ENDED
       })
       this.flvPlayerList.push(this.flvPlayer)
+      console.log(this.flvPlayerList)
+      setTimeout(() => {
+        this.flvPlayerList.forEach((item, index) => {
+          // eslint-disable-next-line use-isnan
+          if (!item.currentTime) {
+            this.destoryVideo(this.rtspArr[index], item)
+            console.log(this.$refs[`video-box-${index}`], '214-----------')
+            this.$refs[`video-box-${index}`][0].parentNode.removeChild(this.$refs[`video-box-${index}`][0])
+          }
+        })
+        this.loadeddata()
+      }, 4000)
     },
 
     reloadVideo (flvPlayer) {
