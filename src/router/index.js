@@ -4,10 +4,10 @@ import Layout from '../layout/index.vue'
 
 Vue.use(VueRouter)
 
-// const RouteView = {
-//   name: 'RouteView',
-//   render: (h) => h('router-view')
-// }
+const RouteView = {
+  name: 'RouteView',
+  render: (h) => h('router-view')
+}
 
 const routes = [
   {
@@ -17,9 +17,35 @@ const routes = [
     children: [
       {
         path: '/home',
-        component: () => import('@/views/Home'),
-        meta: { title: '服务订单' }
-
+        hidden: true,
+        component: RouteView,
+        meta: { title: '服务订单' },
+        redirect: '/home/index',
+        children: [
+          {
+            path: '/home/index',
+            component: RouteView,
+            redirect: '/home/index/one',
+            meta: { title: '测试自己one' },
+            children: [
+              {
+                path: '/home/index/one',
+                component: () => import('@/views/home/index/one'),
+                meta: { title: '测试自己one-one' }
+              },
+              {
+                path: '/home/index/two',
+                component: () => import('@/views/home/index/two'),
+                meta: { title: '测试自己one-two' }
+              }
+            ]
+          },
+          {
+            path: '/home/two',
+            component: () => import('@/views/home/two'),
+            meta: { title: '测试自己two' }
+          }
+        ]
       },
       {
         path: '/salary',

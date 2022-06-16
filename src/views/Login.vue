@@ -78,7 +78,11 @@ export default {
       this.$refs[formName].resetFields()
     },
     login (formName) {
-      this.$router.push({ path: '/home' })
+      this.$router.push({
+        path: this.$store.getters.permission_routes.length
+          ? this.$store.getters.permission_routes[0].path
+          : this.$store.getters.parent_routes[0].path
+      })
       // this.$refs[formName].validate((valid) => {
       //   if (valid) {
       //     login({ ...this.dataForm, password: md5(this.dataForm.password) }).then(res => {

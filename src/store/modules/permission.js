@@ -1,6 +1,9 @@
 import { routes } from '../../router'
+console.log(routes[0].children.filter(item => !item.hidden))
+console.log(routes[0].children.filter(item => !item.hidden).length && routes[0].children.filter(item => !item.hidden)[0].children ? routes[0].children.filter(item => !item.hidden)[0].children : [])
 const state = {
-  routes: routes[0].children[0].children ? routes[0].children[0].children : []
+  routes: routes[0].children.filter(item => !item.hidden).length && routes[0].children.filter(item => !item.hidden)[0].children ? routes[0].children.filter(item => !item.hidden)[0].children : [],
+  parentRoutes: routes[0].children.filter(item => !item.hidden)
 }
 
 const mutations = {

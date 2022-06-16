@@ -22,7 +22,7 @@
     <el-container>
       <el-header>
         <div class="menu">
-          <li :class="curIndex === index?'cur':''" v-for="(item, index) in parrentRoutes" :key="index" @click="handleLoadChild(item, index)">{{item.meta.title}}</li>
+          <li :class="curIndex === index?'cur':''" v-for="(item, index) in parent_routes" :key="index" @click="handleLoadChild(item, index)">{{item.meta.title}}</li>
         </div>
       </el-header>
       <el-container>
@@ -43,7 +43,6 @@
   </div>
 </template>
 <script>
-import { routes } from '@/router'
 import { mapGetters } from 'vuex'
 import SidebarItem from './sidebarItem.vue'
 // import SerialPort from '@/utils/SerialPorts'
@@ -69,10 +68,7 @@ export default {
   },
   // 计算属性
   computed: {
-    ...mapGetters(['permission_routes']),
-    parrentRoutes () {
-      return routes[0].children
-    },
+    ...mapGetters(['permission_routes', 'parent_routes']),
     key () {
       return this.$route.path
     },
@@ -91,7 +87,6 @@ export default {
   },
   // 创建时
   created () {
-    console.log(this.parrentRoutes)
   },
   // 挂载完毕
   mounted () {
